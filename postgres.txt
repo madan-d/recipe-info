@@ -1,0 +1,16 @@
+CREATE TABLE recipe;
+
+CREATE TABLE IF NOT EXISTS public.recipes
+(
+    id integer NOT NULL DEFAULT nextval('recipes_id_seq'::regclass),
+    cuisine character varying COLLATE pg_catalog."default",
+    title character varying COLLATE pg_catalog."default",
+    rating double precision,
+    prep_time integer,
+    cook_time integer,
+    total_time integer,
+    description text COLLATE pg_catalog."default",
+    nutrients json,
+    serves character varying COLLATE pg_catalog."default",
+    CONSTRAINT recipes_pkey PRIMARY KEY (id)
+)

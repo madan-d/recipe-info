@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes Table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Recipes List</h1>
+</header>
+
+<div class="table-container">
+    <table id="recipes-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Cuisine</th>
+                <th>Rating</th>
+                <th>Total Time</th>
+                <th>No. of Serves</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <label for="results-per-page">Results per page:</label>
+    <select id="results-per-page">
+        <option value="10">10</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+    <div class="pagination">
+        <button id="prev-page">&#9664;</button>
+        <span id="page-info">1</span>
+        <button id="next-page">&#9654;</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
