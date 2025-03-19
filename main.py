@@ -55,12 +55,14 @@ async def get_recipes(
 ):
     db = SessionLocal()
     
-    if sort_order == "asc":
-        sort_order = None
-    else:
-        sort_order = "desc"
+    query = db.query(Recipe)
+
+    if hasattr(Recipe, sort_by):
+        column = getattr(Recipe, sort_by)
+        query = query.order_by(column.desc() if sort_order == "desc" else column.asc())
+
+    recipes = query.offset(skip).limit(limit).all()
     
-    recipes = db.query(Recipe).order_by(getattr(Recipe, sort_by).desc() if sort_order == "desc" else getattr(Recipe, sort_by).asc()).all()
     db.close()
     return recipes
 
