@@ -8,41 +8,52 @@
 </head>
 <body>
 
-<header>
-    <h1>Recipes List</h1>
-</header>
+    <header>
+        <h1>Recipes List</h1>
+    </header>
+    <div class="search-container">
+        <div class="search-row">
+            <input class="search-bar" id="search-title" placeholder="Search by title" type="text">
+            <input class="search-bar" id="search-cuisine" placeholder="Search by cuisine" type="text">
+        </div>
+        <div class="search-row">
+            <input class="search-bar" id="search-calories" placeholder="Calories (e.g., <=400)" type="text">
+            <input class="search-bar" id="search-rating" placeholder="Rating (e.g., >=4.5)" type="text">
+            <input class="search-bar" id="search-time" placeholder="Total time (e.g., <=60)" type="text">
+        </div>
+        <button class="search-button" id="search-button">Search</button>
+    </div>
 
-<div class="table-container">
-    <table id="recipes-table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Cuisine</th>
-                <th>Rating</th>
-                <th>Total Time</th>
-                <th>No. of Serves</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-    <label for="results-per-page">Results per page:</label>
-    <div>
-    <select id="results-per-page" class="pagination">
-        <option value="10">10</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-    </select>
-</div>
-    <div class="pagination">
+    <div class="result-container"></div>
+        <label for="results-per-page">Results per page:</label>
+        <select id="results-per-page" class="pagination">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
         <button id="prev-page">&#9664;</button>
         <span id="page-info">1</span>
         <button id="next-page">&#9654;</button>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <div class="table-container">
+        <table id="recipes-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cuisine</th>
+                    <th>Rating</th>
+                    <th>Total Time</th>
+                    <th>No. of Serves</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

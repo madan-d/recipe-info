@@ -16,6 +16,14 @@ header {
     justify-content: center;
     margin-top: 20px;
 }
+
+.result-container{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 table {
     width: 80%;
     border-collapse: collapse;
