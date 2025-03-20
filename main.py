@@ -40,32 +40,6 @@ class RecipeResponse(BaseModel):
     class Config:
         orm_mode = True
 
-@app.get("/recipes_info/", response_model=List[RecipeResponse])
-async def get_recipes(
-    skip: int = 0,
-    limit: int = 10,
-    sort_by: str = "rating",
-    sort_order: str = "desc",
-    title: Optional[str] = Query(None, min_length=1),
-    cuisine: Optional[str] = Query(None, min_length=1)
-):
-    db = SessionLocal()
-    query = db.query(Recipe)
-
-    if title:
-        query = query.filter(Recipe.title.ilike(f"%{title}%"))
-    if cuisine:
-        query = query.filter(Recipe.cuisine.ilike(f"%{cuisine}%"))
-
-    if hasattr(Recipe, sort_by):
-        column = getattr(Recipe, sort_by)
-        query = query.order_by(column.desc() if sort_order == "desc" else column.asc())
-
-    recipes = query.offset(skip).limit(limit).all()
-    
-    db.close()
-    return recipes
-
 @app.get("/api/recipes", response_model=List[RecipeResponse])
 async def get_recipes_paginated(
     page: int = Query(1, ge=1, description="Page number for pagination"),
@@ -104,7 +78,6 @@ async def search_recipes(
     db = SessionLocal()
     query = db.query(Recipe)
 
-    # Apply filters
     if calories:
         value, operator = parse_comparison(calories)
         if operator == '<=':

@@ -1,6 +1,6 @@
 let currentPage = 1;
 let resultsPerPage = 10;
-let allRecipes = []; // Store all search results
+let allRecipes = [];
 let searchParams = {
     title: "",
     cuisine: "",
@@ -31,10 +31,8 @@ document.getElementById("next-page").addEventListener("click", function () {
 });
 
 document.getElementById("search-button").addEventListener("click", function () {
-    // Reset to first page when searching
     currentPage = 1;
     
-    // Get all search parameters
     searchParams = {
         title: document.getElementById("search-title").value.trim(),
         cuisine: document.getElementById("search-cuisine").value.trim(),
@@ -48,11 +46,9 @@ document.getElementById("search-button").addEventListener("click", function () {
 
 async function fetchRecipes() {
     try {
-        // Build the search URL with parameters
         let apiUrl = "http://localhost:8000/api/recipes/search?";
         const params = new URLSearchParams();
         
-        // Add non-empty search parameters
         Object.entries(searchParams).forEach(([key, value]) => {
             if (value) {
                 params.append(key, value);
@@ -85,7 +81,6 @@ function displayRecipes(data) {
         row.innerHTML = `<td colspan="5" class="no-results">No recipes found matching your search criteria.</td>`;
         tableBody.appendChild(row);
     } else {
-        // Calculate pagination
         const startIndex = (currentPage - 1) * resultsPerPage;
         const endIndex = startIndex + resultsPerPage;
         const paginatedData = data.slice(startIndex, endIndex);
@@ -113,7 +108,6 @@ function updatePagination(totalItems) {
     document.getElementById("next-page").disabled = currentPage >= totalPages;
 }
 
-// Add event listeners for Enter key in search fields
 document.querySelectorAll('.search-bar').forEach(input => {
     input.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
